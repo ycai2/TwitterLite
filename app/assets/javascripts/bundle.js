@@ -65,29 +65,32 @@
 	    this.followState = this.$el.data("initial-follow-state");
 	
 	    this.render();
-	    this.$el.click(this.handleClick.bind(this));
+	    this.$el.on("click", this.handleClick.bind(this));
 	  }
 	
 	  render() {
-	    if (this.followState === "following" || this.followState === "unfollowing") {
-	      $('button.follow-toggle').prop('disabled', true);
-	      $("button.follow-toggle").html(this.followState);
+	    if (this.followState === "following") {
+	      this.$el.prop('disabled', true);
+	      this.$el.html("Following...");
+	    } else if (this.followState === "unfollowing") {
+	      this.$el.prop('disabled', true);
+	      this.$el.html("Unfollowing...");
 	    } else {
-	      $('button.follow-toggle').prop('disabled', false);
+	      this.$el.prop('disabled', false);
 	      if (this.followState === "unfollowed" || this.followState === "unfollowing") {
-	        $("button.follow-toggle").html("Follow");
+	        this.$el.html("Follow");
 	      }
 	      else if (this.followState === "followed" || this.followState === "following") {
-	        $("button.follow-toggle").html("Unfollow");
+	        this.$el.html("Unfollow");
 	      }
 	      else {
-	        $("button.follow-toggle").html("Error");
+	        this.$el.html("Error");
 	      }
 	    }
 	  }
 	
-	  handleClick(e) {
-	    e.preventDefault();
+	  handleClick(event) {
+	    event.preventDefault();
 	
 	    $.ajax({
 	      method: this.handleClickMethod(),
@@ -98,7 +101,6 @@
 	      this.render();
 	    });
 	
-	    console.log("toggling state reached");
 	    this.togglingState();
 	    this.render();
 	  }

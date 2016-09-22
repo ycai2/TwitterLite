@@ -7098,3 +7098,217 @@ Processing by FollowsController#create as JSON
   [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "follows" ("created_at", "followee_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2016-09-22 16:29:33.635735"], ["followee_id", 1], ["follower_id", 8], ["updated_at", "2016-09-22 16:29:33.635735"]]
   [1m[35m (0.6ms)[0m  COMMIT
 Completed 200 OK in 1018ms (Views: 0.4ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2016-09-22 13:32:52 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTweet Load (1.0ms)[0m  SELECT "tweets".* FROM "tweets"  WHERE "tweets"."user_id" IN (1)
+  [1m[36mMention Load (1.0ms)[0m  [1mSELECT "mentions".* FROM "mentions"  WHERE "mentions"."tweet_id" IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mFollow Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "follows"  WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = 1 LIMIT 1[0m  [["follower_id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows"  WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = 1 LIMIT 1[0m  [["follower_id", 8]]
+  Rendered follows/_form.html.erb (11.9ms)
+  Rendered tweets/_tweet.html.erb (2.8ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (1.1ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (1.6ms)
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (1.5ms)
+  Rendered tweets/_tweet.html.erb (1.1ms)
+  Rendered tweets/_tweet.html.erb (1.7ms)
+  Rendered tweets/_tweet.html.erb (1.5ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (1.6ms)
+  Rendered tweets/_tweet.html.erb (1.2ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.4ms)
+  Rendered tweets/_tweet.html.erb (1.2ms)
+  Rendered tweets/_tweet.html.erb (1.6ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (1.2ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1  [["followee_id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  Rendered users/show.html.erb within layouts/application (91.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+Completed 200 OK in 412ms (Views: 358.5ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/assets/application.self.css?body=1" for 127.0.0.1 at 2016-09-22 13:32:53 -0400
+
+
+Started GET "/assets/bundle.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:32:53 -0400
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:32:53 -0400
+
+
+Started GET "/assets/jquery.serializejson.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:32:53 -0400
+
+
+Started GET "/assets/application.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:32:53 -0400
+
+
+Started GET "/assets/jquery.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:32:53 -0400
+
+
+Started GET "/assets/bundle.js.map" for 127.0.0.1 at 2016-09-22 13:32:53 -0400
+
+
+Started DELETE "/users/1/follow" for 127.0.0.1 at 2016-09-22 13:32:54 -0400
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mFollow Load (0.5ms)[0m  [1mSELECT  "follows".* FROM "follows"  WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = 1 LIMIT 1[0m  [["follower_id", 8]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 16]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Completed 200 OK in 1011ms (Views: 0.9ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/users/1/follow" for 127.0.0.1 at 2016-09-22 13:32:55 -0400
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mFollow Exists (0.7ms)[0m  SELECT  1 AS one FROM "follows"  WHERE ("follows"."follower_id" = 8 AND "follows"."followee_id" = 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "follows" ("created_at", "followee_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2016-09-22 17:32:56.987094"], ["followee_id", 1], ["follower_id", 8], ["updated_at", "2016-09-22 17:32:56.987094"]]
+  [1m[35m (41.3ms)[0m  COMMIT
+Completed 200 OK in 1085ms (Views: 0.4ms | ActiveRecord: 44.6ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2016-09-22 13:33:45 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mTweet Load (0.8ms)[0m  SELECT "tweets".* FROM "tweets"  WHERE "tweets"."user_id" IN (1)
+  [1m[36mMention Load (0.7ms)[0m  [1mSELECT "mentions".* FROM "mentions"  WHERE "mentions"."tweet_id" IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mFollow Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "follows"  WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = 1 LIMIT 1[0m  [["follower_id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "follows"  WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = 1 LIMIT 1[0m  [["follower_id", 8]]
+  Rendered follows/_form.html.erb (5.3ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (1.1ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.5ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1  [["followee_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  Rendered users/show.html.erb within layouts/application (66.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+Completed 200 OK in 321ms (Views: 299.9ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/application.self.css?body=1" for 127.0.0.1 at 2016-09-22 13:33:46 -0400
+
+
+Started GET "/assets/jquery.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:33:46 -0400
+
+
+Started GET "/assets/jquery.serializejson.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:33:46 -0400
+
+
+Started GET "/assets/application.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:33:46 -0400
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:33:46 -0400
+
+
+Started GET "/assets/bundle.self.js?body=1" for 127.0.0.1 at 2016-09-22 13:33:46 -0400
+
+
+Started GET "/assets/bundle.js.map" for 127.0.0.1 at 2016-09-22 13:33:46 -0400
+
+
+Started DELETE "/users/1/follow" for 127.0.0.1 at 2016-09-22 13:33:47 -0400
+Processing by FollowsController#destroy as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36mFollow Load (0.6ms)[0m  [1mSELECT  "follows".* FROM "follows"  WHERE "follows"."follower_id" = $1 AND "follows"."followee_id" = 1 LIMIT 1[0m  [["follower_id", 8]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "follows" WHERE "follows"."id" = $1[0m  [["id", 17]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Completed 200 OK in 1013ms (Views: 0.5ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/users/1/follow" for 127.0.0.1 at 2016-09-22 13:33:49 -0400
+Processing by FollowsController#create as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'D3lOnFbjePwRBLkFLZI6xQ' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mFollow Exists (0.7ms)[0m  SELECT  1 AS one FROM "follows"  WHERE ("follows"."follower_id" = 8 AND "follows"."followee_id" = 1) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "follows" ("created_at", "followee_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2016-09-22 17:33:50.080682"], ["followee_id", 1], ["follower_id", 8], ["updated_at", "2016-09-22 17:33:50.080682"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Completed 200 OK in 1017ms (Views: 0.3ms | ActiveRecord: 3.5ms)
