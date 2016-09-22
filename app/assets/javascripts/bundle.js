@@ -47,6 +47,7 @@
 	const FollowToggle = __webpack_require__(1);
 	const UserSearch = __webpack_require__(2);
 	const TweetCompose = __webpack_require__(3);
+	const InfiniteTweets = __webpack_require__(4);
 	
 	
 	$(function () {
@@ -60,6 +61,10 @@
 	
 	  $('.tweet-compose').each(function(idx, el) {
 	    new TweetCompose(el);
+	  });
+	
+	  $('.infinite-tweets').each(function(idx, el){
+	    new InfiniteTweets(el);
 	  });
 	});
 
@@ -237,6 +242,8 @@
 	  clearInput() {
 	    this.$el.find("textarea").val("");
 	    this.$el.find("select").val($("option"));
+	    this.$el.find(".mentioned-users").empty();
+	    this.$el.find(".chars-left").html(140);
 	  }
 	
 	  handleSuccess(tweet) {
@@ -263,11 +270,55 @@
 	  }
 	
 	  removeMentionedUser(event){
-	    console.log(event.currentTarget);
+	    $(event.currentTarget).parent().remove();
 	  }
 	}
 	
 	module.exports = TweetCompose;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	class InfiniteTweets {
+	  constructor(el) {
+	    this.$el = $(el);
+	    this.maxCreatedAt = null;
+	    this.fetchTweets();
+	    this.$el.on('click', '.fetch-more', this.fetchTweets.bind(this));
+	  }
+	
+	  fetchTweets() {
+	    const sendData = {};
+	    if (this.maxCreatedAt === null) {
+	      this.maxCreatedAt = new Date().toString();
+	    }
+	    // debugger
+	    sendData.max_created_at = this.maxCreatedAt;
+	
+	    $.ajax({
+	      method: "GET",
+	      url: "/feed",
+	      data: sendData,
+	      dataType: "json",
+	      success: (data) => {
+	        this.insertTweets(data);
+	        this.maxCreatedAt = data[data.length - 1].created_at;
+	      }
+	    });
+	  }
+	
+	  insertTweets(tweets) {
+	    const $feed = $('ul#feed');
+	    for (let i = 0; i < tweets.length; i++) {
+	      const $li = $(`<li>${JSON.stringify(tweets[i])}</li>`);
+	      $feed.append($li);
+	    }
+	  }
+	}
+	
+	module.exports = InfiniteTweets;
 
 
 /***/ }

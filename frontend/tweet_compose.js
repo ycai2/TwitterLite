@@ -29,6 +29,8 @@ class TweetCompose {
   clearInput() {
     this.$el.find("textarea").val("");
     this.$el.find("select").val($("option"));
+    this.$el.find(".mentioned-users").empty();
+    this.$el.find(".chars-left").html(140);
   }
 
   handleSuccess(tweet) {
@@ -55,7 +57,7 @@ class TweetCompose {
   }
 
   removeMentionedUser(event){
-    console.log(event.currentTarget);
+    $(event.currentTarget).parent().remove();
   }
 }
 
