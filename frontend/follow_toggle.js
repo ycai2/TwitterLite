@@ -28,17 +28,14 @@ class FollowToggle {
 
   handleClick(e) {
     e.preventDefault();
-    const that = this;
 
     $.ajax({
       method: this.handleClickMethod(),
       url: `/users/${this.userId}/follow`,
       dataType: "json"
-    }).done(function() {
-      console.log(`before toggle is ${that.followState}`);
-      that.toggleState();
-      console.log(`after toggle is ${that.followState}`);
-      that.render();
+    }).done(() => {
+      this.toggleState();
+      this.render();
     });
 
     console.log("toggling state reached");
@@ -55,7 +52,7 @@ class FollowToggle {
   }
 
   toggleState() {
-    if (this.followState === "followed" || this.followState === "unfollowing") {
+    if (this.followState === "unfollowing") {
       this.followState = "unfollowed";
     } else {
       this.followState = "followed";
