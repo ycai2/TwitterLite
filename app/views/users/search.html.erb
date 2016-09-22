@@ -1,19 +1,27 @@
 <h1>Search!</h1>
 
-<form action="/users/search" method="GET">
+<!-- <form action="/users/search" method="GET">
   <input
     type="text"
     name="query"
-    value="<%= @query %>">
+    value="<%#= @query %>">
 
   <input type="submit" value="Search Users!">
-</form>
+</form> -->
 
-<ul>
-  <% @users.each do |user| %>
+<nav class="user-search">
+  <label for="user-search-username"></label>
+  <input id="user-search-username" type="text">
+  <ul class="users">
+    
+  </ul>
+</nav>
+
+<!-- <ul>
+  <%# @users.each do |user| %>
     <li>
-      <%= link_to user.username, user_url(user) %>
-      <%= render "follows/form", user: user %>
+      <%#= link_to user.username, user_url(user) %>
+      <%#= render "follows/form", user: user %>
     </li>
-  <% end %>
-</ul>
+  <%# end %>
+</ul> -->

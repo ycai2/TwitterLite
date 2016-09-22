@@ -45,11 +45,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	const FollowToggle = __webpack_require__(1);
+	const UserSearch = __webpack_require__(2);
 	
 	
 	$(function () {
 	  $('.follow-toggle').each(function(idx, el) {
 	    new FollowToggle(el);
+	  });
+	
+	  $('.user-search').each(function(idx, el) {
+	    new UserSearch(el);
 	  });
 	});
 
@@ -59,10 +64,10 @@
 /***/ function(module, exports) {
 
 	class FollowToggle {
-	  constructor(el) {
+	  constructor(el, options) {
 	    this.$el = $(el);
-	    this.userId = this.$el.data("user-id");
-	    this.followState = this.$el.data("initial-follow-state");
+	    this.userId = this.$el.data("user-id") || options.userId;
+	    this.followState = this.$el.data("initial-follow-state") || options.followState;
 	
 	    this.render();
 	    this.$el.on("click", this.handleClick.bind(this));
@@ -131,6 +136,65 @@
 	}
 	
 	module.exports = FollowToggle;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	const FollowToggle = __webpack_require__(1);
+	
+	class UserSearch {
+	  constructor(el) {
+	    this.$el = $(el);
+	    this.$input = this.$el.find('input');
+	    this.$ul = this.$el.find('ul');
+	
+	    this.$el.on('input', this.handleInput.bind(this));
+	  }
+	
+	  handleInput(event) {
+	    console.log(this.$input.val());
+	    $.ajax({
+	      method: "GET",
+	      url: "/users/search",
+	      data: {query: this.$input.val()},
+	      dataType: "json",
+	    }).success( (data) => {
+	      this.renderResults(data);
+	    }).error( ( ) => {
+	      console.log("Error");
+	    });
+	  }
+	
+	  renderResults(users) {
+	    this.$ul.html("");
+	    for (let i = 0; i < users.length; i++) {
+	      this.$ul.append(this.userLink(users[i]));
+	    }
+	  }
+	
+	  userLink(user){
+	    const $a = $(`<a href="${user.id}">${user.username}</a>`);
+	    const $followButton = $(`<button class="follow-toggle"></button>`);
+	    new FollowToggle($followButton, {
+	      userId: user.id,
+	      followState: this.followStateString(user)
+	    });
+	    const $li = $(`<li></li>`).append($a).append($followButton);
+	    return $li;
+	  }
+	
+	  followStateString(user) {
+	    if (user.followed) {
+	      return "followed";
+	    } else {
+	      return "unfollowed";
+	    }
+	  }
+	}
+	
+	module.exports = UserSearch;
 
 
 /***/ }
