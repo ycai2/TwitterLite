@@ -18,7 +18,7 @@ class UserSearch {
       dataType: "json",
     }).success( (data) => {
       this.renderResults(data);
-    }).error( ( ) => {
+    }).error(() => {
       console.log("Error");
     });
   }
